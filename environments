@@ -1,0 +1,36 @@
+name: attention-starvation-env
+channels:
+  - pytorch
+  - nvidia
+  - conda-forge
+  - defaults
+dependencies:
+  # Core Python
+  - python=3.10
+  - pip
+  
+  # Data Science & Visualization
+  - pandas>=2.0.0
+  - numpy>=1.24.0
+  - matplotlib>=3.7.0
+  - seaborn>=0.12.0
+  - plotly>=5.14.0
+  - scipy>=1.10.0
+  
+  # Utilities
+  - tqdm
+  - jupyter
+  - ipykernel
+  
+  # Deep Learning Core
+  - pytorch::pytorch>=2.1.0
+  - pytorch::torchvision
+  - pytorch::torchaudio
+  - nvidia::pytorch-cuda=12.1
+  
+  # HuggingFace Ecosystem (Installed via pip)
+  - pip:
+      - transformers>=4.40.0
+      - huggingface-hub>=0.23.0
+      - accelerate>=0.30.0
+      - datasets

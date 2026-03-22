@@ -33,5 +33,9 @@ This project evaluates model behavior across three fertility baselines using Lla
 
 Results and Artifacts
 
-The primary finding of this research is that multilingual jailbreaks are not purely caused by uneven alignment training, but by a structural, mathematical failure of the transformer's attention mechanism when dealing with heavily fragmented tokens.
+This research yields two major findings that bridge mechanistic interpretability and model behavior:
 
+1. The Structural Failure (Attention Starvation): Multilingual jailbreaks are not purely caused by uneven alignment training, but by a mathematical failure of the transformer's attention mechanism. We found a strong negative correlation (Pearson r = -0.814, p < 0.0001) between token fertility and the "attention mass" allocated to the system prompt. High-fertility scripts physically stretch the sequence length, mathematically diluting the safety guardrails.
+2. The "Danger Zone" of Medium Fertility: When we looked at the actual jailbreak success rates (ASR), we found a surprising tradeoff. You might expect Armenian to have the highest ASR because it ignores the safety rules the most. However, token fragmentation works both ways: it breaks down the safety rules, but it also shatters the user's malicious prompt. Even after we removed instances where the model was explicitly confused, the Armenian attacks were too fragmented to be persuasive, resulting in a low jailbreak rate (17.57%).
+
+In contrast, Swahili sits in a critical "Danger Zone." Because it uses the Latin alphabet, the model can still read the prompt clearly enough to execute the attack, but the token count is just high enough to successfully distract the model from the safety rules. This combination resulted in a massive 61.49% jailbreak success rate.
